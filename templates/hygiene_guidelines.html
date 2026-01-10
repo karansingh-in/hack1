@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block title %}Hygiene Guidelines - VendorsHub{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-gradient-to-br from-green-500 to-teal-600 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-5xl font-bold mb-4">🧼 Hygiene Guidelines</h1>
+        <h2 class="text-2xl mb-2">स्वच्छता दिशानिर्देश</h2>
+        <p class="text-xl text-green-100">Food Vendors | Restaurants | Street Food | Home Business</p>
+    </div>
+</div>
+
+<!-- Important Notice -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg">
+        <div class="flex items-start">
+            <i class="fas fa-exclamation-triangle text-yellow-600 text-3xl mr-4"></i>
+            <div>
+                <h3 class="text-xl font-bold text-yellow-800 mb-2">⚠️ बहुत ज़रूरी | Very Important</h3>
+                <p class="text-yellow-700 text-lg">साफ़-सफाई = ज्यादा ग्राहक = ज्यादा बिजनेस!</p>
+                <p class="text-yellow-700">Clean food = Healthy customers = More business!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section A: Personal Hygiene -->
+<div class="bg-blue-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-blue-900 mb-2">👤 A. Personal Hygiene</h2>
+            <h3 class="text-2xl text-blue-700">अपनी साफ़-सफाई</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1: Handwashing -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-blue-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-hands-wash text-blue-600 text-6xl"></i>
+                </div>
+                <div class="bg-blue-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-blue-400 text-xs">GIF: How to wash hands properly</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🧼 हाथ धोएं | Wash Hands</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ खाना छूने से पहले</li>
+                    <li>✅ Before touching food</li>
+                    <li>✅ साबुन से 20 सेकंड</li>
+                    <li>✅ With soap for 20 seconds</li>
+                </ul>
+            </div>
+
+            <!-- Card 2: Short Nails -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-pink-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-hand-paper text-pink-600 text-6xl"></i>
+                </div>
+                <div class="bg-pink-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-pink-400 text-xs">Image: Short vs Long nails</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">✂️ छोटे नाखून | Short Nails</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ नाखून छोटे रखें</li>
+                    <li>✅ Keep nails short</li>
+                    <li>✅ गंदगी नहीं जमेगी</li>
+                    <li>✅ No dirt collection</li>
+                </ul>
+            </div>
+
+            <!-- Card 3: Hair Tied -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-purple-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-head-side-mask text-purple-600 text-6xl"></i>
+                </div>
+                <div class="bg-purple-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-purple-400 text-xs">Image: Vendor wearing cap</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🧢 बाल बांधें | Tie Hair</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ बाल बांध लें या टोपी पहनें</li>
+                    <li>✅ Tie hair or wear cap</li>
+                    <li>✅ बाल खाने में न गिरें</li>
+                    <li>✅ Hair won't fall in food</li>
+                </ul>
+            </div>
+
+            <!-- Card 4: Clean Clothes -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-indigo-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-tshirt text-indigo-600 text-6xl"></i>
+                </div>
+                <div class="bg-indigo-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-indigo-400 text-xs">GIF: Wearing clean apron</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">👕 साफ कपड़े | Clean Clothes</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ रोज़ साफ कपड़े पहनें</li>
+                    <li>✅ Wear clean clothes daily</li>
+                    <li>✅ एप्रन पहनें</li>
+                    <li>✅ Wear apron</li>
+                </ul>
+            </div>
+
+            <!-- Card 5: Daily Bath -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-cyan-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-shower text-cyan-600 text-6xl"></i>
+                </div>
+                <div class="bg-cyan-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-cyan-400 text-xs">Image: Taking shower</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🚿 रोज़ नहाएं | Bath Daily</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ हर दिन नहाएं</li>
+                    <li>✅ Take bath daily</li>
+                    <li>✅ साफ रहें</li>
+                    <li>✅ Stay clean</li>
+                </ul>
+            </div>
+
+            <!-- Card 6: No Smoking -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-red-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-smoking-ban text-red-600 text-6xl"></i>
+                </div>
+                <div class="bg-red-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-red-400 text-xs">Image: No smoking sign</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🚭 धूम्रपान नहीं | No Smoking</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>❌ खाना बनाते समय धूम्रपान नहीं</li>
+                    <li>❌ No smoking while cooking</li>
+                    <li>❌ थूकना नहीं</li>
+                    <li>❌ No spitting</li>
+                </ul>
+            </div>
+
+            <!-- Card 7: Gloves/Apron -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-green-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-mitten text-green-600 text-6xl"></i>
+                </div>
+                <div class="bg-green-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-green-400 text-xs">GIF: Wearing gloves</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🧤 दस्ताने | Gloves</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ अगर हो सके तो दस्ताने पहनें</li>
+                    <li>✅ Wear gloves if possible</li>
+                    <li>✅ खाना ज्यादा साफ रहेगा</li>
+                    <li>✅ Food stays cleaner</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section B: Stall/Kitchen Hygiene -->
+<div class="bg-green-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-green-900 mb-2">🏪 B. Stall/Kitchen Hygiene</h2>
+            <h3 class="text-2xl text-green-700">दुकान/रसोई की साफ़-सफाई</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Clean Platform -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-green-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-broom text-green-600 text-6xl"></i>
+                </div>
+                <div class="bg-green-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-green-400 text-xs">GIF: Sweeping and mopping</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🧹 साफ जगह | Clean Platform</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ रोज़ झाड़ू-पोछा करें</li>
+                    <li>✅ Sweep and mop daily</li>
+                    <li>✅ गंदगी तुरंत साफ करें</li>
+                    <li>✅ Clean spills immediately</li>
+                </ul>
+            </div>
+
+            <!-- No Pests -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-red-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-bug text-red-600 text-6xl"></i>
+                </div>
+                <div class="bg-red-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-red-400 text-xs">Image: No rats/cockroaches</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🐀 कीड़े नहीं | No Pests</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>❌ चूहे, कॉकरोच नहीं</li>
+                    <li>❌ No rats, cockroaches</li>
+                    <li>✅ खाना ढक कर रखें</li>
+                    <li>✅ Cover all food</li>
+                </ul>
+            </div>
+
+            <!-- Close Dustbins -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-orange-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-trash-alt text-orange-600 text-6xl"></i>
+                </div>
+                <div class="bg-orange-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-orange-400 text-xs">Image: Covered dustbin</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🗑️ बंद कूड़ादान | Closed Dustbin</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ ढक्कन वाला कूड़ादान इस्तेमाल करें</li>
+                    <li>✅ Use dustbin with lid</li>
+                    <li>✅ रोज़ खाली करें</li>
+                    <li>✅ Empty daily</li>
+                </ul>
+            </div>
+
+            <!-- No Dirty Water -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-blue-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-water text-blue-600 text-6xl"></i>
+                </div>
+                <div class="bg-blue-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-blue-400 text-xs">Image: Clean vs dirty water</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">💧 गंदा पानी नहीं | No Dirty Water</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ गंदा पानी फेंक दें</li>
+                    <li>✅ Throw dirty water</li>
+                    <li>✅ खाने के पास न रखें</li>
+                    <li>✅ Don't keep near food</li>
+                </ul>
+            </div>
+
+            <!-- Clean Utensils -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-yellow-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-utensils text-yellow-600 text-6xl"></i>
+                </div>
+                <div class="bg-yellow-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-yellow-400 text-xs">GIF: Washing dishes with soap</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🍽️ साफ बर्तन | Clean Utensils</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ साबुन से धोएं</li>
+                    <li>✅ Wash with soap</li>
+                    <li>✅ सुखाकर रखें</li>
+                    <li>✅ Dry before storing</li>
+                </ul>
+            </div>
+
+            <!-- Fresh Oil -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-amber-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-oil-can text-amber-600 text-6xl"></i>
+                </div>
+                <div class="bg-amber-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-amber-400 text-xs">Image: Fresh vs old black oil</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🛢️ ताज़ा तेल | Fresh Oil</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ ताज़ा तेल इस्तेमाल करें</li>
+                    <li>✅ Use fresh oil</li>
+                    <li>❌ बार-बार इस्तेमाल न करें</li>
+                    <li>❌ Don't reuse many times</li>
+                </ul>
+            </div>
+
+            <!-- Cover Food -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-teal-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-box text-teal-600 text-6xl"></i>
+                </div>
+                <div class="bg-teal-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-teal-400 text-xs">GIF: Covering food items</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">📦 खाना ढकें | Cover Food</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ सभी खाना ढक कर रखें</li>
+                    <li>✅ Cover all food items</li>
+                    <li>✅ मक्खी न बैठे</li>
+                    <li>✅ Keep flies away</li>
+                </ul>
+            </div>
+
+            <!-- Storage -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-purple-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-boxes text-purple-600 text-6xl"></i>
+                </div>
+                <div class="bg-purple-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-purple-400 text-xs">Image: Separate storage</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">📦 अलग रखें | Proper Storage</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ कच्चा और पका अलग रखें</li>
+                    <li>✅ Raw and cooked separate</li>
+                    <li>✅ साफ डिब्बों में</li>
+                    <li>✅ In clean containers</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section C: Food Handling -->
+<div class="bg-yellow-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-yellow-900 mb-2">🍳 C. Food Handling Hygiene</h2>
+            <h3 class="text-2xl text-yellow-700">खाना संभालने की साफ़-सफाई</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Wash Vegetables -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-lime-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-carrot text-lime-600 text-6xl"></i>
+                </div>
+                <div class="bg-lime-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-lime-400 text-xs">GIF: Washing vegetables</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🥬 सब्जी धोएं | Wash Vegetables</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ 2-3 बार साफ पानी से धोएं</li>
+                    <li>✅ Wash 2-3 times with clean water</li>
+                </ul>
+            </div>
+
+            <!-- Clean Chopping Board -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-stone-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-bacon text-stone-600 text-6xl"></i>
+                </div>
+                <div class="bg-stone-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-stone-400 text-xs">Image: Clean chopping board</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🔪 साफ बोर्ड | Clean Board</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ चॉपिंग बोर्ड साफ रखें</li>
+                    <li>✅ Keep board clean</li>
+                </ul>
+            </div>
+
+            <!-- Touch Less -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-rose-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-hand-holding-heart text-rose-600 text-6xl"></i>
+                </div>
+                <div class="bg-rose-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-rose-400 text-xs">GIF: Using tongs/spoons</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🤚 कम छुएं | Touch Less</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ चिमटा/चम्मच इस्तेमाल करें</li>
+                    <li>✅ Use tongs/spoons</li>
+                </ul>
+            </div>
+
+            <!-- Hot Food Hot -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-red-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-temperature-high text-red-600 text-6xl"></i>
+                </div>
+                <div class="bg-red-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-red-400 text-xs">Image: Hot food serving</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">🔥 गरम खाना गरम | Hot Food Hot</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ गरम खाना गरम परोसें</li>
+                    <li>✅ Serve hot food hot</li>
+                </ul>
+            </div>
+
+            <!-- Cold Food Cold -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <div class="bg-blue-100 w-full h-48 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-snowflake text-blue-600 text-6xl"></i>
+                </div>
+                <div class="bg-blue-50 w-full h-24 rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-blue-400 text-xs">Image: Refrigerator</span>
+                </div>
+                <h4 class="text-xl font-bold text-gray-800 mb-3">❄️ ठंडा खाना ठंडा | Cold Food Cold</h4>
+                <ul class="space-y-2 text-gray-700">
+                    <li>✅ ठंडा खाना फ्रिज में रखें</li>
+                    <li>✅ Keep cold food in fridge</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section D: FSSAI Guidelines -->
+<div class="bg-purple-50 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+            <h2 class="text-4xl font-bold text-purple-900 mb-2">📋 D. FSSAI Basic Guidelines</h2>
+            <h3 class="text-2xl text-purple-700">FSSAI की आसान बातें</h3>
+        </div>
+        
+        <div class="bg-white rounded-xl shadow-xl p-8">
+            <div class="space-y-6">
+                <div class="flex items-start border-l-4 border-purple-500 pl-6 py-4">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-broom text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-gray-800 mb-2">1. जगह साफ रखें | Keep Area Clean</h4>
+                        <p class="text-gray-700 text-lg">दुकान और रसोई हमेशा साफ रखें।</p>
+                        <p class="text-gray-600">Always keep shop and kitchen clean.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start border-l-4 border-purple-500 pl-6 py-4">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-gray-800 mb-2">2. खाना सुरक्षित रखें | Keep Food Safe</h4>
+                        <p class="text-gray-700 text-lg">खाना ढककर रखें। सड़ा खाना न बेचें।</p>
+                        <p class="text-gray-600">Cover food. Don't sell spoiled food.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start border-l-4 border-purple-500 pl-6 py-4">
+                    <div class="flex-shrink-0 mr-4">
+                        <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-ban text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-xl text-gray-800 mb-2">3. बदबू नहीं | No Rotten Smell</h4>
+                        <p class="text-gray-700 text-lg">गंदी बदबू नहीं होनी चाहिए।</p>
+                        <p class="text-gray-600">No rotten smell allowed.</p>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

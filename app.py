@@ -393,6 +393,12 @@ def add_review(vendor_id):
     
     return render_template('review_form.html', vendor=vendor)
 
+
+@app.route('/hygiene-guidelines')
+def hygiene_guidelines():
+    return render_template('hygiene_guidelines.html')
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
