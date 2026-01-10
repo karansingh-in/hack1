@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block title %}Review {{ vendor.business_name }} - VendorsHub{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="bg-white rounded-xl shadow-lg p-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-2">Write a Review</h1>
+        <p class="text-gray-600 mb-8">Share your experience with {{ vendor.business_name }}</p>
+        
+        <!-- Review Preview Card -->
+        <div id="reviewPreview" class="bg-gradient-to-br from-purple-50 to-teal-50 rounded-xl p-6 mb-8">
+            <h3 class="font-semibold text-gray-800 mb-4">Live Preview</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div>
+                    <p class="text-sm text-gray-600">Overall</p>
+                    <p class="text-2xl font-bold text-purple-600" id="previewOverall">0</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Hygiene</p>
+                    <p class="text-2xl font-bold text-green-600" id="previewHygiene">0</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Staff</p>
+                    <p class="text-2xl font-bold text-blue-600" id="previewStaff">0</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Pricing</p>
+                    <p class="text-2xl font-bold text-teal-600" id="previewPricing">0</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Necessities</p>
+                    <p class="text-lg font-bold text-gray-700" id="previewNecessities">-</p>
+                </div>
+            </div>
+        </div>
+        
+        <form method="POST" action="{{ url_for('add_review', vendor_id=vendor.id) }}" enctype="multipart/form-data" id="reviewForm">
+            <div class="space-y-8">
+                <!-- Overall Rating -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        Overall Rating *
+                    </label>
+                    <div class="star-rating" data-rating-name="overall_rating">
+                        <i class="star fas fa-star" data-value="1"></i>
+                        <i class="star fas fa-star" data-value="2"></i>
+                        <i class="star fas fa-star" data-value="3"></i>
+                        <i class="star fas fa-star" data-value="4"></i>
+                        <i class="star fas fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" name="overall_rating" id="overall_rating" required>
+                </div>
+                
+                <!-- Hygiene Rating -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-shield-alt text-green-600 mr-2"></i>Hygiene Rating *
+                    </label>
+                    <p class="text-sm text-gray-600 mb-2">How clean and hygienic is the establishment?</p>
+                    <div class="star-rating" data-rating-name="hygiene_rating">
+                        <i class="star fas fa-star" data-value="1"></i>
+                        <i class="star fas fa-star" data-value="2"></i>
+                        <i class="star fas fa-star" data-value="3"></i>
+                        <i class="star fas fa-star" data-value="4"></i>
+                        <i class="star fas fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" name="hygiene_rating" id="hygiene_rating" required>
+                </div>
+                
+                <!-- Basic Necessities -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-check-circle text-teal-600 mr-2"></i>Basic Necessities Available *
+                    </label>
+                    <p class="text-sm text-gray-600 mb-2">Are essential items/facilities available?</p>
+                    <div class="flex gap-4">
+                        <label class="flex items-center px-6 py-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-green-50 hover:border-green-400 transition necessities-option">
+                            <input type="radio" name="necessities_available" value="yes" required class="mr-2">
+                            <span class="font-medium text-gray-700">
+                                <i class="fas fa-check text-green-600 mr-2"></i>Yes
+                            </span>
+                        </label>
+                        <label class="flex items-center px-6 py-3 border-2 border-gray-300 rounded-lg cursor-pointer hover:bg-red-50 hover:border-red-400 transition necessities-option">
+                            <input type="radio" name="necessities_available" value="no" required class="mr-2">
+                            <span class="font-medium text-gray-700">
+                                <i class="fas fa-times text-red-600 mr-2"></i>No
+                            </span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Staff Behavior -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-users text-blue-600 mr-2"></i>Staff Behavior *
+                    </label>
+                    <p class="text-sm text-gray-600 mb-2">How helpful and courteous was the staff?</p>
+                    <div class="star-rating" data-rating-name="staff_rating">
+                        <i class="star fas fa-star" data-value="1"></i>
+                        <i class="star fas fa-star" data-value="2"></i>
+                        <i class="star fas fa-star" data-value="3"></i>
+                        <i class="star fas fa-star" data-value="4"></i>
+                        <i class="star fas fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" name="staff_rating" id="staff_rating" required>
+                </div>
+                
+                <!-- Pricing -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-dollar-sign text-purple-600 mr-2"></i>Pricing Fairness *
+                    </label>
+                    <p class="text-sm text-gray-600 mb-2">Are the prices reasonable and fair?</p>
+                    <div class="star-rating" data-rating-name="pricing_rating">
+                        <i class="star fas fa-star" data-value="1"></i>
+                        <i class="star fas fa-star" data-value="2"></i>
+                        <i class="star fas fa-star" data-value="3"></i>
+                        <i class="star fas fa-star" data-value="4"></i>
+                        <i class="star fas fa-star" data-value="5"></i>
+                    </div>
+                    <input type="hidden" name="pricing_rating" id="pricing_rating" required>
+                </div>
+                
+                <!-- Written Feedback -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        Your Review
+                    </label>
+                    <textarea name="text" 
+                              rows="5" 
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                              placeholder="Share your experience with this business..."></textarea>
+                </div>
+                
+                <!-- Image Upload -->
+                <div>
+                    <label class="block text-lg font-semibold text-gray-800 mb-3">
+                        Add Photos (Optional)
+                    </label>
+                    <input type="file" 
+                           name="image" 
+                           accept="image/*" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <p class="text-sm text-gray-500 mt-2">JPG, PNG, GIF up to 16MB</p>
+                </div>
+                
+                <!-- Submit Buttons -->
+                <div class="flex gap-4 pt-4">
+                    <button type="submit" 
+                            class="flex-1 gradient-bg text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition">
+                        <i class="fas fa-paper-plane mr-2"></i>Submit Review
+                    </button>
+                    <a href="{{ url_for('vendor_profile', vendor_id=vendor.id) }}" 
+                       class="flex-1 bg-gray-200 text-gray-700 py-4 rounded-lg font-semibold text-lg hover:bg-gray-300 transition text-center">
+                        Cancel
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Star rating functionality
+    document.querySelectorAll('.star-rating').forEach(ratingContainer => {
+        const stars = ratingContainer.querySelectorAll('.star');
+        const ratingName = ratingContainer.dataset.ratingName;
+        const hiddenInput = document.getElementById(ratingName);
+        
+        stars.forEach((star, index) => {
+            // Hover effect
+            star.addEventListener('mouseenter', () => {
+                stars.forEach((s, i) => {
+                    if (i <= index) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Click to select
+            star.addEventListener('click', () => {
+                const value = star.dataset.value;
+                hiddenInput.value = value;
+                
+                stars.forEach((s, i) => {
+                    if (i < value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+                
+                updatePreview();
+            });
+        });
+        
+        // Reset on mouse leave
+        ratingContainer.addEventListener('mouseleave', () => {
+            const currentValue = hiddenInput.value;
+            stars.forEach((s, i) => {
+                if (i < currentValue) {
+                    s.classList.add('active');
+                } else {
+                    s.classList.remove('active');
+                }
+            });
+        });
+    });
+    
+    // Necessities radio button styling
+    document.querySelectorAll('.necessities-option input').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelectorAll('.necessities-option').forEach(opt => {
+                opt.classList.remove('border-green-400', 'bg-green-50', 'border-red-400', 'bg-red-50');
+                opt.classList.add('border-gray-300');
+            });
+            
+            if (this.checked) {
+                const parent = this.closest('.necessities-option');
+                if (this.value === 'yes') {
+                    parent.classList.add('border-green-400', 'bg-green-50');
+                } else {
+                    parent.classList.add('border-red-400', 'bg-red-50');
+                }
+            }
+            
+            updatePreview();
+        });
+    });
+    
+    // Update preview
+    function updatePreview() {
+        const overall = document.getElementById('overall_rating').value;
+        const hygiene = document.getElementById('hygiene_rating').value;
+        const staff = document.getElementById('staff_rating').value;
+        const pricing = document.getElementById('pricing_rating').value;
+        const necessities = document.querySelector('input[name="necessities_available"]:checked');
+        
+        document.getElementById('previewOverall').textContent = overall || '0';
+        document.getElementById('previewHygiene').textContent = hygiene || '0';
+        document.getElementById('previewStaff').textContent = staff || '0';
+        document.getElementById('previewPricing').textContent = pricing || '0';
+        document.getElementById('previewNecessities').textContent = necessities ? (necessities.value === 'yes' ? 'Yes' : 'No') : '-';
+    }
+    
+    // Form validation
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+        const requiredRatings = ['overall_rating', 'hygiene_rating', 'staff_rating', 'pricing_rating'];
+        let valid = true;
+        
+        requiredRatings.forEach(id => {
+            if (!document.getElementById(id).value) {
+                valid = false;
+                alert('Please provide all required ratings');
+            }
+        });
+        
+        if (!valid) {
+            e.preventDefault();
+        }
+    });
+</script>
+{% endblock %}
