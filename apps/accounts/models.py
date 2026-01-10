@@ -1,8 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
-# Placeholder models: we'll extend or replace with a custom user model later
+User = get_user_model()
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.CharField(max_length=20, choices=(('vendor', 'Vendor'), ('customer', 'Customer')))
