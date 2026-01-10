@@ -1,7 +1,0 @@
-tensorflow
-streamlit
-
-django>=4.2
-weasyprint
-Pillow
-django-crispy-forms
