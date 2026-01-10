@@ -7,7 +7,7 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = ''
+app.config['SECRET_KEY'] = '000'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vendorshub.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
