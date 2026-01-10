@@ -7,7 +7,7 @@ from datetime import datetime
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = ''
+app.config['SECRET_KEY'] = '123'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vendorshub.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
@@ -305,6 +305,44 @@ def edit_vendor():
     
     return render_template('edit_vendor.html', vendor=vendor, states=INDIAN_STATES, categories=BUSINESS_CATEGORIES)
 
+@app.route('/vendor/delete', methods=['POST'])
+@login_required
+def delete_vendor():
+    # Only vendors can delete their own shop
+    if current_user.role != 'vendor':
+        flash('Access denied. Only vendors can delete their business.', 'error')
+        return redirect(url_for('index'))
+    
+    vendor = Vendor.query.filter_by(user_id=current_user.id).first()
+    
+    if not vendor:
+        flash('No business listing found', 'error')
+        return redirect(url_for('index'))
+    
+    # Delete vendor image if exists
+    if vendor.image_path:
+        vendor_image = os.path.join(app.config['UPLOAD_FOLDER'], vendor.image_path)
+        if os.path.exists(vendor_image):
+            os.remove(vendor_image)
+    
+    # Delete all review images associated with this vendor
+    reviews = Review.query.filter_by(vendor_id=vendor.id).all()
+    for review in reviews:
+        if review.image_path:
+            review_image = os.path.join(app.config['UPLOAD_FOLDER'], review.image_path)
+            if os.path.exists(review_image):
+                os.remove(review_image)
+    
+    # Delete all reviews first (due to foreign key constraint)
+    Review.query.filter_by(vendor_id=vendor.id).delete()
+    
+    # Delete the vendor
+    db.session.delete(vendor)
+    db.session.commit()
+    
+    flash('Business listing deleted successfully', 'success')
+    return redirect(url_for('vendor_dashboard'))
+
 @app.route('/vendor/<int:vendor_id>')
 def vendor_profile(vendor_id):
     vendor = Vendor.query.get_or_404(vendor_id)
@@ -393,11 +431,42 @@ def add_review(vendor_id):
     
     return render_template('review_form.html', vendor=vendor)
 
+@app.route('/review/<int:review_id>/delete', methods=['POST'])
+@login_required
+def delete_review(review_id):
+    review = Review.query.get_or_404(review_id)
+    
+    # Only customers can delete reviews, and only their own reviews
+    if current_user.role != 'customer':
+        flash('Access denied. Only customers can delete reviews.', 'error')
+        return redirect(url_for('vendor_profile', vendor_id=review.vendor_id))
+    
+    if review.customer_id != current_user.id:
+        flash('You can only delete your own reviews.', 'error')
+        return redirect(url_for('vendor_profile', vendor_id=review.vendor_id))
+    
+    vendor_id = review.vendor_id
+    
+    # Delete image if exists
+    if review.image_path:
+        image_file = os.path.join(app.config['UPLOAD_FOLDER'], review.image_path)
+        if os.path.exists(image_file):
+            os.remove(image_file)
+    
+    db.session.delete(review)
+    db.session.commit()
+    
+    flash('Review deleted successfully', 'success')
+    return redirect(url_for('vendor_profile', vendor_id=vendor_id))
+
 
 @app.route('/hygiene-guidelines')
 def hygiene_guidelines():
     return render_template('hygiene_guidelines.html')
 
+@app.route('/training')
+def training():
+    return render_template('training.html')
 
 if __name__ == '__main__':
     with app.app_context():

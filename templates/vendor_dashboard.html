@@ -48,6 +48,22 @@
                 </div>
             </div>
             
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6 mt-6">
+    <h3 class="text-lg font-semibold text-red-900 mb-2">Danger Zone</h3>
+    <p class="text-sm text-red-700 mb-4">
+        Once you delete your business, there is no going back. Please be certain.
+    </p>
+    <form method="POST" action="{{ url_for('delete_vendor') }}" 
+          onsubmit="return confirm('⚠️ WARNING: This will permanently delete your business and all associated reviews. This action cannot be undone. Are you absolutely sure?');">
+        <button type="submit" 
+                class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+            <svg class="inline w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+            </svg>
+            Delete Business Permanently
+        </button>
+    </form>
+</div>
             <div class="bg-white rounded-xl shadow-lg p-6">
                 <div class="flex items-center justify-between">
                     <div>

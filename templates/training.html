@@ -1,0 +1,853 @@
+{% extends "base.html" %}
+
+{% block title %}Register - VendorsHub{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>खाना बेचने वालों के लिए ट्रेनिंग | Food Vendor Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+    max-width: 500px;
+    margin: 80px auto 0;   /* ⬅⬅ THIS FIXES NAVBAR OVERLAP */
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .welcome-screen {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .welcome-icon {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+
+        .welcome-screen h2 {
+            color: #333;
+            font-size: 22px;
+            margin: 15px 0;
+        }
+
+        .welcome-screen p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .level-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .level-card .emoji {
+            font-size: 50px;
+            margin: 15px 0;
+        }
+
+        .lesson-box {
+            background: #f8f9ff;
+            border-left: 5px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .lesson-box .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .lesson-box h4 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .lesson-box p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .question-box {
+            background: #fff8e1;
+            border: 3px solid #ffd54f;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .question-box h3 {
+            color: #f57c00;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .question-box .emoji {
+            font-size: 60px;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+        }
+
+        .choice-btn {
+            background: white;
+            color: #333;
+            border: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .choice-btn .emoji {
+            font-size: 30px;
+        }
+
+        .score-display {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .score-display .stars {
+            font-size: 60px;
+            margin: 20px 0;
+        }
+
+        .score-display h2 {
+            color: #667eea;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .score-display p {
+            color: #666;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .tip-box {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .tip-box p {
+            color: #2e7d32;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .certificate {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .certificate h2 {
+            font-size: 26px;
+            margin: 15px 0;
+        }
+
+        .certificate .trophy {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+
+        .image-choice {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .image-option {
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .image-option:hover {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .image-option .emoji {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .image-option p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .level-menu {
+            display: grid;
+            gap: 15px;
+        }
+
+        .level-item {
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .level-item:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .level-item .emoji {
+            font-size: 40px;
+        }
+
+        .level-item .info {
+            flex: 1;
+        }
+
+        .level-item h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .level-item p {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .screen:target {
+            display: block;
+        }
+
+        .screen:target ~ #welcome {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div class="screen active" id="welcome">
+            <div class="welcome-screen">
+                <div class="welcome-icon">🍲🧑‍🍳✨</div>
+                <h2>स्वागत है! Welcome!</h2>
+                <p><strong>खाना बेचने वालों के लिए</strong><br>Food Vendors Training</p>
+                <p>🎮 यह एक आसान गेम जैसी ट्रेनिंग है।<br>
+                5 Levels में सीखें कैसे साफ़ और सुरक्षित खाना बनाएं!</p>
+                <div class="tip-box">
+                    <p>💡 हर level के बाद स्टार्स मिलेंगे!</p>
+                </div>
+                <a href="#levels" class="btn btn-primary">शुरू करें Start Training</a>
+            </div>
+        </div>
+
+        <!-- Levels Menu -->
+        <div class="screen" id="levels">
+            <div class="header">
+                <h1>🎯 Training Levels</h1>
+                <p>किसी भी level पर click करें</p>
+            </div>
+            <div class="level-menu">
+                <a href="#level1" class="level-item">
+                    <div class="emoji">🧼</div>
+                    <div class="info">
+                        <h3>Level 1: खुद की सफाई</h3>
+                        <p>Personal Hygiene</p>
+                    </div>
+                </a>
+                <a href="#level2" class="level-item">
+                    <div class="emoji">🏪</div>
+                    <div class="info">
+                        <h3>Level 2: किचन साफ़</h3>
+                        <p>Clean Kitchen/Stall</p>
+                    </div>
+                </a>
+                <a href="#level3" class="level-item">
+                    <div class="emoji">🍳</div>
+                    <div class="info">
+                        <h3>Level 3: सुरक्षित पकाना</h3>
+                        <p>Safe Cooking</p>
+                    </div>
+                </a>
+                <a href="#level4" class="level-item">
+                    <div class="emoji">🍽️</div>
+                    <div class="info">
+                        <h3>Level 4: सर्व करना</h3>
+                        <p>Serving Safely</p>
+                    </div>
+                </a>
+                <a href="#level5" class="level-item">
+                    <div class="emoji">🗑️</div>
+                    <div class="info">
+                        <h3>Level 5: कचरा Handle</h3>
+                        <p>Waste Management</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Level 1: Personal Hygiene -->
+        <div class="screen" id="level1">
+            <div class="level-card">
+                <div class="emoji">🧼</div>
+                <h3>Level 1: खुद की सफाई</h3>
+                <p>Personal Hygiene</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🖐️</div>
+                <h4>हाथ धोएं Wash Hands</h4>
+                <p>👉 खाना बनाने से पहले<br>
+                👉 बाथरूम के बाद<br>
+                👉 कचरा छूने के बाद<br>
+                <strong>साबुन से 20 second धोएं!</strong></p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">💅</div>
+                <h4>नाखून छोटे रखें Short Nails</h4>
+                <p>लंबे नाखून में गंदगी = बीमारी 🦠<br>
+                हमेशा नाखून काट कर रखें!</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">👕</div>
+                <h4>साफ़ कपड़े Clean Clothes</h4>
+                <p>रोज़ साफ़ कपड़े पहनें।<br>
+                Apron पहनें अगर हो सके! 🦺</p>
+            </div>
+
+            <div class="question-box">
+                <h3>❓ सवाल Question</h3>
+                <div class="emoji">🤧</div>
+                <p style="color: #333; font-size: 16px; margin: 15px 0;">
+                    <strong>अगर आपको खांसी-जुकाम है, तो खाना बनाएं?</strong><br>
+                    If you have cold/cough, cook food?
+                </p>
+                <a href="#level1-correct" class="btn choice-btn">
+                    <span class="emoji">❌</span>
+                    <span>नहीं NO - Mask पहनें या rest करें</span>
+                </a>
+                <a href="#level1-wrong" class="btn choice-btn">
+                    <span class="emoji">✅</span>
+                    <span>हाँ YES - कोई दिक्कत नहीं</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Level 1 Results -->
+        <div class="screen" id="level1-correct">
+            <div class="score-display">
+                <div class="stars">⭐⭐⭐</div>
+                <h2>बहुत बढ़िया! Perfect!</h2>
+                <p>आपने सही जवाब दिया! ✅</p>
+                <div class="tip-box">
+                    <p>💡 बीमार होने पर mask ज़रूर पहनें या किसी और से काम करवाएं!</p>
+                </div>
+                <a href="#level2" class="btn btn-success">Next Level →</a>
+                <a href="#levels" class="btn btn-primary">All Levels</a>
+            </div>
+        </div>
+
+        <div class="screen" id="level1-wrong">
+            <div class="score-display">
+                <div class="stars">⭐</div>
+                <h2>ग़लत जवाब Wrong Answer</h2>
+                <p>कोई बात नहीं! फिर से कोशिश करें 💪</p>
+                <div class="lesson-box">
+                    <div class="icon">😷</div>
+                    <p><strong>याद रखें:</strong> बीमार होने पर खाना न बनाएं। Germs फैल सकते हैं! Mask पहनें या rest करें।</p>
+                </div>
+                <a href="#level1" class="btn btn-danger">फिर से Try Again</a>
+                <a href="#level2" class="btn btn-primary">Next Level →</a>
+            </div>
+        </div>
+
+        <!-- Level 2: Clean Kitchen -->
+        <div class="screen" id="level2">
+            <div class="level-card">
+                <div class="emoji">🏪</div>
+                <h3>Level 2: किचन/स्टॉल साफ़</h3>
+                <p>Clean Kitchen/Stall</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🧹</div>
+                <h4>रोज़ सफाई Daily Cleaning</h4>
+                <p>👉 फ़र्श झाड़ें/पोछें<br>
+                👉 चूल्हे के आस-पास साफ़ रखें<br>
+                👉 कोने में गंदगी न रहे</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🪳</div>
+                <h4>कीड़े नहीं No Pests</h4>
+                <p>मक्खी 🪰, चूहे 🐀, छिपकली = बीमारी!<br>
+                Dustbin ढक कर रखें। जालियाँ लगाएं।</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🍽️</div>
+                <h4>बर्तन Clean Utensils</h4>
+                <p>खाना बनाने और परोसने के बर्तन<br>
+                गर्म पानी और साबुन से धोएं!<br>
+                सूखने के बाद ढक कर रखें। 🧼</p>
+            </div>
+
+            <div class="question-box">
+                <h3>❓ Photo देखें और बताएं</h3>
+                <p style="color: #333; font-size: 16px; margin: 15px 0;">
+                    <strong>कौन सी किचन सही है?</strong><br>
+                    Which kitchen is correct?
+                </p>
+                <div class="image-choice">
+                    <a href="#level2-wrong" class="image-option">
+                        <div class="emoji">🪳🗑️💩</div>
+                        <p><strong>गंदी किचन</strong><br>Dirty - कचरा खुला, मक्खी</p>
+                    </a>
+                    <a href="#level2-correct" class="image-option">
+                        <div class="emoji">✨🧹🧼</div>
+                        <p><strong>साफ़ किचन</strong><br>Clean - साफ़, कोई कीड़े नहीं</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 2 Results -->
+        <div class="screen" id="level2-correct">
+            <div class="score-display">
+                <div class="stars">⭐⭐⭐</div>
+                <h2>शाबाश! Excellent!</h2>
+                <p>साफ़ किचन = स्वस्थ ग्राहक! ✅</p>
+                <div class="tip-box">
+                    <p>💡 FSSAI कहता है: किचन हमेशा साफ़ रखें, कीड़ों से बचाएं!</p>
+                </div>
+                <a href="#level3" class="btn btn-success">Next Level →</a>
+                <a href="#levels" class="btn btn-primary">All Levels</a>
+            </div>
+        </div>
+
+        <div class="screen" id="level2-wrong">
+            <div class="score-display">
+                <div class="stars">⭐</div>
+                <h2>फिर से सोचें Try Again</h2>
+                <div class="lesson-box">
+                    <div class="icon">🧹</div>
+                    <p><strong>याद रखें:</strong> गंदी किचन में बीमारी फैलती है। साफ़ किचन में खाना बनाएं!</p>
+                </div>
+                <a href="#level2" class="btn btn-danger">फिर से Try Again</a>
+                <a href="#level3" class="btn btn-primary">Next Level →</a>
+            </div>
+        </div>
+
+        <!-- Level 3: Safe Cooking -->
+        <div class="screen" id="level3">
+            <div class="level-card">
+                <div class="emoji">🍳</div>
+                <h3>Level 3: सुरक्षित पकाना</h3>
+                <p>Safe Cooking Practices</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🥬</div>
+                <h4>सब्जियाँ धोएं Wash Vegetables</h4>
+                <p>पकाने से पहले सभी सब्जियाँ<br>
+                साफ़ पानी में अच्छी तरह धोएं!<br>
+                मिट्टी हटाएं। 🚰</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🔥</div>
+                <h4>अच्छे से पकाएं Cook Well</h4>
+                <p>कच्चा खाना = बीमारी 🤢<br>
+                मीट/चिकन पूरी तरह पकाएं।<br>
+                तेल़ को धुआं तक गर्म करें।</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🛢️</div>
+                <h4>तेल Fresh रखें Fresh Oil</h4>
+                <p>❌ काला तेल use न करें<br>
+                ❌ बार-बार same तेल न गर्म करें<br>
+                ✅ रोज़ fresh या साफ़ तेल use करें</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🥩🥗</div>
+                <h4>कच्चा और पका अलग</h4>
+                <p>कच्चा मांस और पकी सब्जी<br>
+                अलग-अलग चाकू और बोर्ड use करें!<br>
+                Cross-contamination नहीं होना चाहिए।</p>
+            </div>
+
+            <div class="question-box">
+                <h3>❓ क्या सही है?</h3>
+                <div class="emoji">🛢️</div>
+                <p style="color: #333; font-size: 16px; margin: 15px 0;">
+                    <strong>पुराना काला तेल बार-बार use करें?</strong><br>
+                    Reuse old black oil many times?
+                </p>
+                <a href="#level3-correct" class="btn choice-btn">
+                    <span class="emoji">❌</span>
+                    <span>नहीं NO - Cancer और बीमारी हो सकती है</span>
+                </a>
+                <a href="#level3-wrong" class="btn choice-btn">
+                    <span class="emoji">✅</span>
+                    <span>हाँ YES - पैसा बचता है</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Level 3 Results -->
+        <div class="screen" id="level3-correct">
+            <div class="score-display">
+                <div class="stars">⭐⭐⭐</div>
+                <h2>बिलकुल सही! Correct!</h2>
+                <p>Fresh तेल = Healthy खाना! ✅</p>
+                <div class="tip-box">
+                    <p>💡 FSSAI: बार-बार गर्म किया तेल खतरनाक है। Fresh oil ही use करें!</p>
+                </div>
+                <a href="#level4" class="btn btn-success">Next Level →</a>
+                <a href="#levels" class="btn btn-primary">All Levels</a>
+            </div>
+        </div>
+
+        <div class="screen" id="level3-wrong">
+            <div class="score-display">
+                <div class="stars">⭐</div>
+                <h2>ग़लत! Wrong!</h2>
+                <div class="lesson-box">
+                    <div class="icon">⚠️</div>
+                    <p><strong>खतरा:</strong> पुराना काला तेल से cancer और दिल की बीमारी हो सकती है। Fresh oil use करें!</p>
+                </div>
+                <a href="#level3" class="btn btn-danger">फिर से Try Again</a>
+                <a href="#level4" class="btn btn-primary">Next Level →</a>
+            </div>
+        </div>
+
+        <!-- Level 4: Serving Safely -->
+        <div class="screen" id="level4">
+            <div class="level-card">
+                <div class="emoji">🍽️</div>
+                <h3>Level 4: सर्व करना</h3>
+                <p>Serving Food Safely</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🫱</div>
+                <h4>हाथ से मत छुएं Don't Touch</h4>
+                <p>खाना हाथ से मत छुएं! 🚫👋<br>
+                Spoon, चिमटा, या gloves use करें।<br>
+                पैसे छूने के बाद हाथ धोएं।</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🧊</div>
+                <h4>खाना ढक कर रखें Cover Food</h4>
+                <p>बना हुआ खाना हमेशा ढक कर रखें।<br>
+                मक्खी, धूल से बचाएं। 🪰❌<br>
+                गर्म खाना गर्म, ठंडा खाना ठंडा सर्व करें।</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">💧</div>
+                <h4>साफ़ पानी Clean Water</h4>
+                <p>हमेशा साफ़ पानी use करें।<br>
+                Filter या boil करें अगर ज़रूरत हो।<br>
+                गंदा पानी = बीमारी! 🚰</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🧤</div>
+                <h4>Gloves पहनें (अगर हो)</h4>
+                <p>खाना serve करते time<br>
+                Disposable gloves पहनें।<br>
+                FSSAI recommendation है! ✅</p>
+            </div>
+
+            <div class="question-box">
+                <h3>❓ सही तरीका बताएं</h3>
+                <p style="color: #333; font-size: 16px; margin: 15px 0;">
+                    <strong>Pani puri serve करने का सही तरीका?</strong><br>
+                    Correct way to serve pani puri?
+                </p>
+                <div class="image-choice">
+                    <a href="#level4-wrong" class="image-option">
+                        <div class="emoji">👋🥟</div>
+                        <p><strong>हाथ से</strong><br>सीधे हाथ से छू कर</p>
+                    </a>
+                    <a href="#level4-correct" class="image-option">
+                        <div class="emoji">🧤🥄</div>
+                        <p><strong>Spoon/Gloves से</strong><br>Spoon या gloves use करके</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level 4 Results -->
+        <div class="screen" id="level4-correct">
+            <div class="score-display">
+                <div class="stars">⭐⭐⭐</div>
+                <h2>परफेक्ट! Perfect!</h2>
+                <p>हाथ से खाना न छुएं। Spoon/Gloves use करें! ✅</p>
+                <div class="tip-box">
+                    <p>💡 FSSAI Standard: Direct हाथ से खाना serve नहीं करना चाहिए!</p>
+                </div>
+                <a href="#level5" class="btn btn-success">Next Level →</a>
+                <a href="#levels" class="btn btn-primary">All Levels</a>
+            </div>
+        </div>
+
+        <div class="screen" id="level4-wrong">
+            <div class="score-display">
+                <div class="stars">⭐</div>
+                <h2>ग़लत तरीका Wrong Way</h2>
+                <div class="lesson-box">
+                    <div class="icon">🧤</div>
+                    <p><strong>याद रखें:</strong> हाथ से खाना छूने से germs फैलते हैं। Spoon/Gloves use करें!</p>
+                </div>
+                <a href="#level4" class="btn btn-danger">फिर से Try Again</a>
+                <a href="#level5" class="btn btn-primary">Next Level →</a>
+            </div>
+        </div>
+
+        <!-- Level 5: Waste Management -->
+        <div class="screen" id="level5">
+            <div class="level-card">
+                <div class="emoji">🗑️</div>
+                <h3>Level 5: कचरा Handle करना</h3>
+                <p>Waste Management</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🗑️</div>
+                <h4>Dustbin Use करें</h4>
+                <p>कचरा ज़मीन पर मत फेंकें!<br>
+                ढक्कन वाला dustbin रखें।<br>
+                रोज़ खाली करें। 🚮</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">♻️</div>
+                <h4>गीला-सूखा अलग</h4>
+                <p>खाने का कचरा = गीला 🥬<br>
+                Plastic, कागज़ = सूखा 📄<br>
+                दोनों अलग-अलग रखें।</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🧹</div>
+                <h4>आस-पास साफ़ रखें</h4>
+                <p>Dustbin के पास साफ़ाई करें।<br>
+                कचरा बाहर न गिरे।<br>
+                बदबू न आए! ✨</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">🧼</div>
+                <h4>कचरे के बाद हाथ धोएं</h4>
+                <p>कचरा फेंकने के बाद<br>
+                हमेशा साबुन से हाथ धोएं!<br>
+                फिर खाना बनाएं। 🖐️💧</p>
+            </div>
+
+            <div class="question-box">
+                <h3>❓ क्या करना सही है?</h3>
+                <div class="emoji">🗑️</div>
+                <p style="color: #333; font-size: 16px; margin: 15px 0;">
+                    <strong>खाली पैकेट और छिलके कहाँ फेंकें?</strong><br>
+                    Where to throw food waste?
+                </p>
+                <a href="#level5-correct" class="btn choice-btn">
+                    <span class="emoji">✅</span>
+                    <span>ढक्कन वाले Dustbin में</span>
+                </a>
+                <a href="#level5-wrong" class="btn choice-btn">
+                    <span class="emoji">❌</span>
+                    <span>ज़मीन पर या सड़क पर</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Level 5 Results -->
+        <div class="screen" id="level5-correct">
+            <div class="score-display">
+                <div class="stars">⭐⭐⭐</div>
+                <h2>शानदार! Fantastic!</h2>
+                <p>कचरा हमेशा dustbin में फेंकें! ✅</p>
+                <div class="tip-box">
+                    <p>💡 साफ़ जगह = कोई बीमारी नहीं। ग्राहक भी खुश रहेंगे!</p>
+                </div>
+                <a href="#certificate" class="btn btn-success">Certificate देखें 🏆</a>
+                <a href="#levels" class="btn btn-primary">All Levels</a>
+            </div>
+        </div>
+
+        <div class="screen" id="level5-wrong">
+            <div class="score-display">
+                <div class="stars">⭐</div>
+                <h2>ग़लत! Wrong!</h2>
+                <div class="lesson-box">
+                    <div class="icon">🗑️</div>
+                    <p><strong>याद रखें:</strong> ज़मीन पर कचरा = मक्खी, कीड़े, बीमारी! हमेशा dustbin use करें।</p>
+                </div>
+                <a href="#level5" class="btn btn-danger">फिर से Try Again</a>
+                <a href="#certificate" class="btn btn-primary">Certificate देखें</a>
+            </div>
+        </div>
+
+        <!-- Certificate Screen -->
+        <div class="screen" id="certificate">
+            <div class="certificate">
+                <div class="trophy">🏆</div>
+                <h2>बधाई हो! Congratulations!</h2>
+                <p style="font-size: 18px; margin: 15px 0;">
+                    आपने सभी 5 Levels पूरी कर ली!
+                </p>
+                <p style="font-size: 16px;">
+                    अब आप जानते हैं:<br>
+                    ✅ साफ़ तरीके से खाना बनाना<br>
+                    ✅ FSSAI के Basic Rules<br>
+                    ✅ ग्राहकों को Safe खाना देना
+                </p>
+            </div>
+
+            <div class="tip-box">
+                <p>💡 इन सभी बातों को रोज़ follow करें। आपका Business बढ़ेगा और लोग स्वस्थ रहेंगे!</p>
+            </div>
+
+            <div class="lesson-box">
+                <div class="icon">📋</div>
+                <h4>FSSAI की मुख्य बातें:</h4>
+                <p>
+                    ✅ Personal hygiene - साफ़ रहें<br>
+                    ✅ Clean kitchen - किचन साफ़ रखें<br>
+                    ✅ Fresh ingredients - ताज़ा सामान use करें<br>
+                    ✅ Proper cooking - अच्छे से पकाएं<br>
+                    ✅ Safe serving - सुरक्षित तरीके से परोसें<br>
+                    ✅ Waste management - कचरा सही तरीके से फेंकें
+                </p>
+            </div>
+
+            <a href="#levels" class="btn btn-success">फिर से Practice करें</a>
+            <a href="#welcome" class="btn btn-primary">शुरू से Start करें</a>
+        </div>
+    </div>
+</body>
+</html>
+
+{%endblock%}

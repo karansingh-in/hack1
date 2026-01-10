@@ -84,6 +84,9 @@
                     <a href="{{ url_for('hygiene_guidelines') }}" class="text-teal-600 hover:text-teal-700 font-medium flex items-center">
                         <span class="text-xl mr-1">🧼</span> Hygiene Guidelines
                     </a>
+                    <a href="/training" class="text-green-600 hover:text-green-700 font-medium">
+                        🎮 Training
+                    </a>
                     {% if current_user.is_authenticated %}
                         <span class="text-gray-700">Hello, {{ current_user.name }}</span>
                         {% if current_user.role == 'vendor' %}
@@ -131,6 +134,7 @@
             <div class="text-center">
                 <p class="text-lg font-semibold mb-2">VendorsHub</p>
                 <p class="text-gray-400">Empowering Indian Small Businesses</p>
+                <p class="text-gray-400">Made by team Forge(FS205) for HACKNOVA 2026</p>
                 <p class="text-gray-500 text-sm mt-4">&copy; 2026 VendorsHub. All rights reserved.</p>
             </div>
         </div>
