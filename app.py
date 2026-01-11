@@ -33,7 +33,7 @@ INDIAN_STATES = [
 ]
 
 BUSINESS_CATEGORIES = [
-    'Restaurant', 'Cafe', 'Grocery Store', 'Salon', 'Pharmacy', 
+    'Restaurant', 'Stall', 'Cafe', 'Grocery Store', 'Salon', 'Pharmacy', 
     'Electronics Shop', 'Clothing Store', 'Hardware Store', 'Bakery',
     'Medical Clinic', 'Gym', 'Book Store', 'Other'
 ]
