@@ -210,7 +210,7 @@ This project is not currently licensed. Please contact the author for licensing 
 
 ## 📞 Support & Contact
 
--   📧 Author: [karansingh.developer@gmail.com](mailto:karansingh.developer@gmail.com) <!-- TODO: Verify or update author email -->
+-   📧 Author: [karansingh.developer@gmail.com](mailto:karannsinggh.work@gmail.com) <!-- TODO: Verify or update author email -->
 -   🐛 Issues: [GitHub Issues](https://github.com/karansingh-in/hack1/issues)
 
 ---
