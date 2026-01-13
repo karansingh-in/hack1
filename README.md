@@ -1,4 +1,3 @@
-```markdown
 # 🚀 VendorsHub
 
 <div align="center">
@@ -223,4 +222,3 @@ This project is not currently licensed. Please contact the author for licensing 
 Made with ❤️ by [Karan Singh](https://github.com/karansingh-in)
 
 </div>
-```
